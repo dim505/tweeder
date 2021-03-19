@@ -7,11 +7,13 @@ import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Avatar from "@material-ui/core/Avatar";
 import NavBarStyle from "./NavBar.module.scss";
+import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
 
-const NavBar = () => {
+const NavBar = (props) => {
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
+    props.UpdateTab(newValue);
     setValue(newValue);
   };
 
@@ -56,6 +58,9 @@ const NavBar = () => {
               <Typography display="inline" variant="subtitle2">
                 Bob Smith
               </Typography>
+              <IconButton>
+                <ArrowDropDownIcon />
+              </IconButton>
             </Grid>
           </Grid>
         </Grid>

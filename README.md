@@ -1,2 +1,5 @@
-#Portfolio V2
-Please visit my CryptoTracker (http://cryptotracker123.azurewebsites.net). You can find my code for this project here (https://github.com/dim505/CrypoTracker) 
+#Tweeder
+This web app will be a Twitter inspired clone
+Move Information: http://dmitriyprogrammingportfolio.tk/Projects/Tweeder
+Live Link: https://tweeder.azurewebsites.net/
+ 
