@@ -8,9 +8,22 @@ import Tab from "@material-ui/core/Tab";
 import Avatar from "@material-ui/core/Avatar";
 import NavBarStyle from "./NavBar.module.scss";
 import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
+import Popover from "@material-ui/core/Popover";
+import Button from "@material-ui/core/Button";
+import AccountCircleIcon from "@material-ui/icons/AccountCircle";
+import GroupIcon from "@material-ui/icons/Group";
+import SettingsIcon from "@material-ui/icons/Settings";
+import ButtonGroup from "@material-ui/core/ButtonGroup";
+import ExitToAppIcon from "@material-ui/icons/ExitToApp";
+import Divider from "@material-ui/core/Divider";
+import appStateContext from "./Shared/appState"
 
 const NavBar = (props) => {
+  const appState = useContext(appStateContext);
   const [value, setValue] = React.useState(0);
+  const [OpenPopover, SetOpenPopover] = React.useState(false);
+  const ClosePopOver = () => SetOpenPopover(false);
+  const OpenPopoverFunc = (event) => SetOpenPopover(event.currentTarget);
 
   const handleChange = (event, newValue) => {
     props.UpdateTab(newValue);
@@ -21,7 +34,12 @@ const NavBar = (props) => {
     <div className={NavBarStyle.NavBar}>
       <Grid container alignItems="center">
         <Grid item xs={3}>
-          <IconButton>
+        <IconButton
+            onClick={() => {
+              props.UpdateTab(0);
+              setValue(0);
+            }}
+          >
             <TwitterIcon />
           </IconButton>
 
@@ -58,9 +76,43 @@ const NavBar = (props) => {
               <Typography display="inline" variant="subtitle2">
                 Bob Smith
               </Typography>
-              <IconButton>
+              <IconButton onClick={OpenPopoverFunc}>
                 <ArrowDropDownIcon />
               </IconButton>
+
+
+              
+              <Popover
+                open={Boolean(OpenPopover)}
+                anchorEl={OpenPopover}
+                onClose={ClosePopOver}
+                anchorOrigin={{
+                  vertical: "bottom",
+                  horizontal: "center"
+                }}
+                transformOrigin={{
+                  vertical: "top",
+                  horizontal: "center"
+                }}
+              >
+                <ButtonGroup
+                  classes={{ grouped: NavBarStyle.ProfileMenu }}
+                  orientation="vertical"
+                >
+                  <Button startIcon={<AccountCircleIcon />}>My Profile</Button>
+                  <Button startIcon={<GroupIcon />}>Group Chat</Button>
+                  <Button startIcon={<SettingsIcon />}>Settings</Button>
+                  <Divider variant="middle" />
+                  <Button
+                    onClick={() => { appState.Auth0Client.logout();}}
+                    classes={{ grouped: NavBarStyle.Logout }}
+                    startIcon={<ExitToAppIcon />}
+                  >
+                    Logout
+                  </Button>
+                </ButtonGroup>
+              </Popover>
+
             </Grid>
           </Grid>
         </Grid>

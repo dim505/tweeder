@@ -34,6 +34,7 @@ const FrontPage = () => {
               classes={{ root: Style.BtnSignUp }}
               variant="contained"
               color="primary"
+              onClick={Login}
             >
               Sign Up
             </Button>

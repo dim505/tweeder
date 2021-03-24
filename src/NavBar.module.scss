@@ -4,4 +4,16 @@
   padding-top: 10px;
   margin-bottom: 20px;
   padding: 10px;
+
+  .MuiButton-outlined {
+    border: 1px solid white !important;
+  }
+}
+
+.ProfileMenu {
+  border: 1px !important;
+
+  .Logout {
+    color: red !important;
+  }
 }

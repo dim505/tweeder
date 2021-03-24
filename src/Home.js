@@ -44,7 +44,7 @@ const Home = () => {
 
   return (
     <div className={HomePage.background}>
-      <PerfectScrollbar className={HomePage.PostBody}>
+       
         <Grid container spacing={4}>
           <Grid item xs={8}>
             <div className={HomePage.AddTweetContainer}>
@@ -353,7 +353,7 @@ const Home = () => {
           </Grid>
           <Footer />
         </Grid>
-      </PerfectScrollbar>
+ 
     </div>
   );
 };

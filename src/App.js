@@ -12,7 +12,8 @@ import Fade from "react-reveal/Fade";
 import HomePage from "./HomePage.module.scss";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
-
+import Explore from "./Explore"
+import Bookmarks from "./Bookmarks"
 //https://www.ronaldjamesgroup.com/blog/reason-behind-using-refs-instead-of-id-in-react-js
 //https://www.javascriptstuff.com/use-refs-not-ids/
 //https://underbelly.is/writing-about/using-react-refs-to-manipulate-the-dom
@@ -64,8 +65,10 @@ const App = () => {
     if (Authenicated) {
       return (
 
-        <>
-          <NavBar UpdateTab={UpdateTab} />
+<>
+        <NavBar UpdateTab={UpdateTab} />
+        <div className="PostBody">
+          
           {TabValue === 0 ? (
             <Fade>
               <Home />
@@ -76,36 +79,23 @@ const App = () => {
 
           {TabValue === 1 ? (
             <Fade>
-              <div className={HomePage.background}>
-                <PerfectScrollbar className={HomePage.PostBody}>
-                  <Grid container>
-                    <Grid item xs={3}>
-                      <Paper>
-                        <Tabs
-                          fullWidth={true}
-                          orientation="vertical"
-                          variant="scrollable"
-                          value={value}
-                          onChange={handleChange}
-                          indicatorColor="primary"
-                          textColor="primary"
-                          
-                        >
-                          <Tab label="Top" />
-                          <Tab label="Lastest" />
-                          <Tab label="People" />
-                          <Tab label="Media" />
-                        </Tabs>
-                      </Paper>
-                    </Grid>
-                  </Grid>
-                </PerfectScrollbar>
-              </div>
+                <Explore />
             </Fade>
           ) : (
             <div />
           )}
-        </>
+
+          
+{TabValue === 2 ? (
+            <Fade>
+                <Bookmarks />
+            </Fade>
+          ) : (
+            <div />
+          )}
+
+        </div>
+      </>
 
 
 )

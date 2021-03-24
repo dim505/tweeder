@@ -1,0 +1,43 @@
+/*Style for the vertcle pab nav on pages EXPLORE AND BOOKMARKS */
+
+.TabContainer {
+	max-width: 200px;
+
+	.TabUnderline {
+		left: 0;
+	}
+}
+
+/*POST CSS*/
+.PostContainer {
+	margin-top: 10px;
+
+	.PostButtonsContainer {
+		display: flex;
+		justify-content: space-between;
+
+		.RetweetBtn {
+			color: Green;
+		}
+		.SavedBtn {
+			color: #89cff0;
+		}
+	}
+
+	/*class is shared*/
+	.LikedBtn {
+		color: red !important;
+	}
+
+	.AddCommentTextBox {
+		padding: 5px;
+		background: #f2f2f2;
+		border-radius: 15px;
+	}
+
+	.DisplayCommentTextBox {
+		padding: 5px;
+		background: #f2f2f2;
+		border-radius: 15px;
+	}
+}
