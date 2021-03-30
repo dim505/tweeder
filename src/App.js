@@ -10,10 +10,10 @@ import NavBar from "./NarBar";
 import "react-perfect-scrollbar/dist/css/styles.css";
 import Fade from "react-reveal/Fade";
 import HomePage from "./HomePage.module.scss";
-import Grid from "@material-ui/core/Grid";
-import Paper from "@material-ui/core/Paper";
+ 
 import Explore from "./Explore"
 import Bookmarks from "./Bookmarks"
+import FooterNavBar from "./FooterNavBar";
 //https://www.ronaldjamesgroup.com/blog/reason-behind-using-refs-instead-of-id-in-react-js
 //https://www.javascriptstuff.com/use-refs-not-ids/
 //https://underbelly.is/writing-about/using-react-refs-to-manipulate-the-dom
@@ -31,9 +31,16 @@ const App = () => {
     
     setTimeout(async () => {
       
-      const isAuthenticated = await appState.Auth0Client.isAuthenticated();
-      SetAuthenication(isAuthenticated);
-      console.log(Authenicated)
+      if (window.location.search.includes("code=")) {
+        SetAuthenication(true )
+
+      } else {
+        const isAuthenticated = await appState.Auth0Client.isAuthenticated();
+        SetAuthenication(isAuthenticated);
+
+      }
+
+      
     
     }, 1000)
     
@@ -46,7 +53,6 @@ const App = () => {
          /* if (error.error !== 'login_required') {
                 throw error
           } */
-
     }
     
     
@@ -93,6 +99,8 @@ const App = () => {
           ) : (
             <div />
           )}
+
+<FooterNavBar TabValue={TabValue} UpdateTab={UpdateTab} />
 
         </div>
       </>

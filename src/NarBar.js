@@ -17,6 +17,8 @@ import ButtonGroup from "@material-ui/core/ButtonGroup";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import Divider from "@material-ui/core/Divider";
 import appStateContext from "./Shared/appState"
+import Hidden from "@material-ui/core/Hidden";
+
 
 const NavBar = (props) => {
   const appState = useContext(appStateContext);
@@ -42,13 +44,16 @@ const NavBar = (props) => {
           >
             <TwitterIcon />
           </IconButton>
-
+          <Hidden smDown={true}>
           <Typography display="inline" variant="h6">
             Tweeder
           </Typography>
+          </Hidden>
         </Grid>
         <Grid item xs={6}>
           <Grid container justify="center">
+            
+          <Hidden smDown={true}>
             <Tabs
               value={value}
               onChange={handleChange}
@@ -60,6 +65,7 @@ const NavBar = (props) => {
               <Tab label="Explore" />
               <Tab label="Bookmarks " />
             </Tabs>
+            </Hidden>
           </Grid>
         </Grid>
 
