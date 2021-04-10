@@ -54,10 +54,17 @@ const Explore = () => {
             }
           />
         </Paper>
-
-        <Post />
-        <Post />
-        <Post />
+        <Grid spacing={2} container>
+          <Grid item xs={12} md={6}>
+            <Post PostType="Image" />
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <Post />
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <Post />
+          </Grid>
+        </Grid>
       </Grid>
     </Grid>
   );

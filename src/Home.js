@@ -21,12 +21,16 @@ import AutorenewIcon from "@material-ui/icons/Autorenew";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import InputBase from "@material-ui/core/InputBase";
 import Footer from "./footer.js";
-
+import Dialog from "@material-ui/core/Dialog";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import Hidden from "@material-ui/core/Hidden";
 import BookmarkBorderIcon from "@material-ui/icons/BookmarkBorder";
-
+import Post from "./Post";
 
 const Home = () => {
-
   const TrendingTweets = [
     { TweetName: "programming", NumberOfTweets: "200k" },
     { TweetName: "devchallenges", NumberOfTweets: "123k" },
@@ -35,219 +39,131 @@ const Home = () => {
     { TweetName: "100DaysOfCode", NumberOfTweets: "5k" },
     { TweetName: "learntoCode", NumberOfTweets: "1k" }
   ];
-  
 
   const [OpenPopover, SetOpenPopover] = React.useState(false);
- 
+  const [OpenAddImage, SetOpenAddImage] = React.useState(false);
   const ClosePopOver = () => SetOpenPopover(false);
   const OpenPopoverFunc = (event) => SetOpenPopover(event.currentTarget);
 
+  const AddImage = () => {
+    SetOpenAddImage(false);
+  };
+
   return (
     <div className={HomePage.background}>
-       
-        <Grid container spacing={4}>
-          <Grid item xs={8}>
-            <div className={HomePage.AddTweetContainer}>
-              <Typography variant="button" gutterBottom>
-                Tweet Something
-              </Typography>
-              <Divider />
-              <div className={HomePage.AddTweetContent}>
-                <div className={HomePage.AddTweetTextboxContainer}>
-                  <Avatar variant="rounded">s</Avatar>
+      <Grid container spacing={4}>
+        <Grid item xs={12} md={8}>
+          <div className={HomePage.AddTweetContainer}>
+            <Typography variant="button" gutterBottom>
+              Tweet Something
+            </Typography>
+            <Divider />
+            <div className={HomePage.AddTweetContent}>
+              <div className={HomePage.AddTweetTextboxContainer}>
+                <Avatar variant="rounded">s</Avatar>
 
-                  <TextField
-                    classes={{ root: HomePage.AddTweetTextbox }}
-                    fullWidth={true}
-                    label="Whats Happening?"
-                  />
-                </div>
-              </div>
-
-              <div className={HomePage.AddTweetBottom}>
-                <div>
-                  <IconButton>
-                    <ImageIcon />
-                  </IconButton>
-                  <Button onClick={OpenPopoverFunc} color="primary">
-                    {" "}
-                    <PublicIcon /> <p> Everyone can reply </p>
-                  </Button>
-                </div>
-
-                <div>
-                  <Button variant="contained" color="primary">
-                    Tweet
-                  </Button>
-                </div>
+                <TextField
+                  classes={{ root: HomePage.AddTweetTextbox }}
+                  fullWidth={true}
+                  label="Whats Happening?"
+                />
               </div>
             </div>
 
-            <Paper
-              classes={{ root: HomePage.TrendingTweetsContainer }}
-              elevation={0}
-            >
-              <CardHeader
-                avatar={
-                  <Avatar
-                    variant="rounded"
-                    src="https://i.pinimg.com/originals/d8/ab/6a/d8ab6a527914cba58261361792653287.jpg"
-                    alt="derp"
-                  />
-                }
-                classes={{
-                  root: "TextAllignLeft"
-                }}
-                title="derp"
-                subheader={"August 20, 2020 at 20:43 "}
-              />{" "}
-              <CardContent>
-                {" "}
-                <Typography
-                  classes={{
-                    root: "TextAllignLeft"
+            <div className={HomePage.AddTweetBottom}>
+              <div>
+                <IconButton
+                  onClick={() => {
+                    SetOpenAddImage(true);
                   }}
-                  variant="body2"
-                  component="p"
                 >
-                  Nen dsanoifnoiegiwegniwegnoiwefoief
-                </Typography>
-                <Typography
-                  align="right"
-                  variant="caption"
-                  display="block"
-                  gutterBottom
-                >
-                  449 Comments 59k Retweets 234 Saved
-                </Typography>
-                <Divider />
-                <div className={HomePage.PostButtonsContainer}>
-                  {" "}
-                  <Button>
-                    {" "}
-                    <CommentIcon /> <p> Comment</p>
-                  </Button>
-                  <Button classes={{ root: HomePage.RetweetBtn }}>
-                    {" "}
-                    <AutorenewIcon /> <p> Retweeted</p>
-                  </Button>
-                  <Button classes={{ root: HomePage.LikedBtn }}>
-                    {" "}
-                    <FavoriteBorderIcon /> <p> Liked</p>
-                  </Button>
-                  <Button classes={{ root: HomePage.SavedBtn }}>
-                    {" "}
-                    <BookmarkBorderIcon /> <p> Saved</p>
-                  </Button>
-                </div>
-                <Divider />
-              </CardContent>
-              <CardHeader
-                avatar={<Avatar variant="rounded" alt="" src=""></Avatar>}
-                classes={{
-                  root: "TextAllignLeft"
-                }}
-                title={
-                  <div>
-                    <InputBase
-                      fullWidth={true}
-                      multiline={true}
-                      value=""
-                      classes={{ root: HomePage.AddCommentTextBox }}
-                      placeholder="Tweet Your Reply"
-                      endAdornment={
-                        <IconButton>
-                          <ImageIcon />
-                        </IconButton>
-                      }
-                    />
-                  </div>
-                }
-              />
-              <CardHeader
-                avatar={<Avatar variant="rounded" alt="" src=""></Avatar>}
-                classes={{
-                  root: "TextAllignLeft"
-                }}
-                title={
-                  <>
-                    <div className={HomePage.DisplayCommentTextBox}>
-                      <div>
-                        <Typography
-                          display="inline"
-                          variant="subtitle1"
-                          gutterBottom
-                        >
-                          Bob Smithty {"        "}
-                        </Typography>
+                  <ImageIcon />
+                </IconButton>
 
-                        <Typography
-                          display="inline"
-                          variant="caption"
-                          gutterBottom
-                        >
-                          August 20, 2020 at 20:43
-                        </Typography>
-                      </div>
-                      <Typography variant="body2" gutterBottom>
-                        This is a test comment. TEST TESTTESTTESTTESTTEST
-                        TESTTESTTESTTESTTESTTESTTEST
-                      </Typography>
-                    </div>
-
-                    <Button size="small" classes={{ root: HomePage.LikedBtn }}>
-                      {" "}
-                      <FavoriteBorderIcon /> Liked
+                <Dialog open={OpenAddImage} onClose={() => AddImage()}>
+                  <DialogTitle id="alert-dialog-title">
+                    {"Use Google's location service?"}
+                  </DialogTitle>
+                  <DialogContent>
+                    <DialogContentText id="alert-dialog-description">
+                      Let Google help apps determine location. This means
+                      sending anonymous location data to Google, even when no
+                      apps are running.
+                    </DialogContentText>
+                  </DialogContent>
+                  <DialogActions>
+                    <Button onClick={() => AddImage()} color="primary">
+                      Disagree
                     </Button>
+                    <Button
+                      onClick={() => AddImage()}
+                      color="primary"
+                      autoFocus
+                    >
+                      Agree
+                    </Button>
+                  </DialogActions>
+                </Dialog>
 
-                    <Typography display="inline" variant="caption" gutterBottom>
-                      12.3 Likes
-                    </Typography>
-                  </>
-                }
-              />
-            </Paper>
+                <Button onClick={OpenPopoverFunc} color="primary">
+                  {" "}
+                  <PublicIcon /> <p> Everyone can reply </p>
+                </Button>
+              </div>
 
-            <Popover
-              classes={{ paper: HomePage.AddTweetPopover }}
-              open={Boolean(OpenPopover)}
-              anchorEl={OpenPopover}
-              onClose={ClosePopOver}
-              anchorOrigin={{
-                vertical: "bottom",
-                horizontal: "center"
-              }}
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "center"
-              }}
+              <div>
+                <Button variant="contained" color="primary">
+                  Tweet
+                </Button>
+              </div>
+            </div>
+          </div>
+
+          <Post />
+
+          <Post />
+          <Post />
+
+          <Popover
+            classes={{ paper: HomePage.AddTweetPopover }}
+            open={Boolean(OpenPopover)}
+            anchorEl={OpenPopover}
+            onClose={ClosePopOver}
+            anchorOrigin={{
+              vertical: "bottom",
+              horizontal: "center"
+            }}
+            transformOrigin={{
+              vertical: "top",
+              horizontal: "center"
+            }}
+          >
+            <Typography variant="h6" gutterBottom>
+              Who can reply?
+            </Typography>
+
+            <Typography variant="body2" gutterBottom>
+              Choose who can reply to this Tweet
+            </Typography>
+            <Button
+              classes={{ root: HomePage.PopoverButtons }}
+              fullWidth={true}
             >
-              <Typography variant="h6" gutterBottom>
-                Who can reply?
-              </Typography>
+              {" "}
+              <PublicIcon /> <p> Everyone </p>
+            </Button>
 
-              <Typography variant="body2" gutterBottom>
-                Choose who can reply to this Tweet
-              </Typography>
-              <Button
-                classes={{ root: HomePage.PopoverButtons }}
-                fullWidth={true}
-              >
-                {" "}
-                <PublicIcon /> <p> Everyone </p>
-              </Button>
-
-              <Button
-                classes={{ root: HomePage.PopoverButtons }}
-                fullWidth={true}
-              >
-                {" "}
-                <PeopleIcon /> <p> People you follow </p>
-              </Button>
-            </Popover>
-          </Grid>
-
-          <Grid item xs={4}>
+            <Button
+              classes={{ root: HomePage.PopoverButtons }}
+              fullWidth={true}
+            >
+              {" "}
+              <PeopleIcon /> <p> People you follow </p>
+            </Button>
+          </Popover>
+        </Grid>
+        <Hidden smDown={true}>
+          <Grid item md={4}>
             <Paper
               classes={{ root: HomePage.TrendingTweetsContainer }}
               elevation={0}
@@ -351,9 +267,9 @@ const Home = () => {
               />
             </Paper>
           </Grid>
-          <Footer />
-        </Grid>
- 
+        </Hidden>
+        <Footer />
+      </Grid>
     </div>
   );
 };

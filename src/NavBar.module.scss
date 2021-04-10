@@ -1,12 +1,19 @@
+ 
 .NavBar {
   background-color: white;
   height: 50px;
-  padding-top: 10px;
   margin-bottom: 20px;
-  padding: 10px;
+  padding: 10px 100px 10px 10px;
+  position: absolute;
+  width: 100%;
 
   .MuiButton-outlined {
     border: 1px solid white !important;
+  }
+
+
+  .ProfileNameDiv {
+      padding-right: 20px !important;
   }
 }
 

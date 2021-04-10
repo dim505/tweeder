@@ -1,18 +1,14 @@
 import FrontPage from "./FrontPage";
-import Tabs from "@material-ui/core/Tabs";
-import Tab from "@material-ui/core/Tab";
 import React, { useEffect, useState, useContext } from "react";
-import PerfectScrollbar from "react-perfect-scrollbar";
 import appStateContext from "./Shared/appState";
 import "./Global.scss";
 import Home from "./Home";
 import NavBar from "./NarBar";
 import "react-perfect-scrollbar/dist/css/styles.css";
 import Fade from "react-reveal/Fade";
-import HomePage from "./HomePage.module.scss";
- 
-import Explore from "./Explore"
-import Bookmarks from "./Bookmarks"
+import Profile from "./Profile";
+import Explore from "./Explore";
+import Bookmarks from "./Bookmarks";
 import FooterNavBar from "./FooterNavBar";
 //https://www.ronaldjamesgroup.com/blog/reason-behind-using-refs-instead-of-id-in-react-js
 //https://www.javascriptstuff.com/use-refs-not-ids/
@@ -28,36 +24,24 @@ const App = () => {
   };
   useEffect(async () => {
     await appState.GetAuth0Client();
-    
-    setTimeout(async () => {
-      
-      if (window.location.search.includes("code=")) {
-        SetAuthenication(true )
 
+    setTimeout(async () => {
+      if (window.location.search.includes("code=")) {
+        SetAuthenication(true);
       } else {
         const isAuthenticated = await appState.Auth0Client.isAuthenticated();
         SetAuthenication(isAuthenticated);
-
       }
-
-      
-    
-    }, 1000)
-    
+    }, 1000);
 
     try {
-     await  appState.Auth0Client.getTokenSilently()
+      await appState.Auth0Client.getTokenSilently();
     } catch (error) {
-
-          console.log(error)
-         /* if (error.error !== 'login_required') {
+      console.log(error);
+      /* if (error.error !== 'login_required') {
                 throw error
           } */
     }
-    
-    
-
-
   }, []);
   {
     /*  */
@@ -70,55 +54,53 @@ const App = () => {
   const isAuthenticated = () => {
     if (Authenicated) {
       return (
+        <>
+          <NavBar TabValue={TabValue} UpdateTab={UpdateTab} />
+          <div className="PostBody">
+            {TabValue === 0 ? (
+              <Fade>
+                <Home />
+              </Fade>
+            ) : (
+              <div />
+            )}
 
-<>
-        <NavBar UpdateTab={UpdateTab} />
-        <div className="PostBody">
-          
-          {TabValue === 0 ? (
-            <Fade>
-              <Home />
-            </Fade>
-          ) : (
-            <div />
-          )}
-
-          {TabValue === 1 ? (
-            <Fade>
+            {TabValue === 1 ? (
+              <Fade>
                 <Explore />
-            </Fade>
-          ) : (
-            <div />
-          )}
+              </Fade>
+            ) : (
+              <div />
+            )}
 
-          
-{TabValue === 2 ? (
-            <Fade>
+            {TabValue === 2 ? (
+              <Fade>
                 <Bookmarks />
-            </Fade>
-          ) : (
-            <div />
-          )}
+              </Fade>
+            ) : (
+              <div />
+            )}
 
-<FooterNavBar TabValue={TabValue} UpdateTab={UpdateTab} />
+            {TabValue === 3 ? (
+              <Fade>
+                <Profile />
+              </Fade>
+            ) : (
+              <div />
+            )}
 
-        </div>
-      </>
-
-
-)
+            <FooterNavBar TabValue={TabValue} UpdateTab={UpdateTab} />
+          </div>
+        </>
+      );
     } else {
       return (
-<Fade>
-      <FrontPage />
-      
-      </Fade>
+        <Fade>
+          <FrontPage />
+        </Fade>
       );
     }
   };
-
-
-
 
   return <>{isAuthenticated()}</>;
 };

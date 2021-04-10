@@ -14,8 +14,8 @@ const Bookmarks = () => {
   };
 
   return (
-    <Grid container spacing={2}>
-      <Grid item xs={3}>
+    <Grid container spacing={1}>
+      <Grid item xs={12} sm={3}>
         <div className={Shared.TabContainer}>
           <Paper>
             <Tabs
@@ -37,8 +37,18 @@ const Bookmarks = () => {
         </div>
       </Grid>
 
-      <Grid item xs={9}>
-        <Post />
+      <Grid item xs={12} sm={9}>
+        <Grid container>
+          <Grid item xs={12} md={6}>
+            <Post />
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <Post />
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <Post />
+          </Grid>
+        </Grid>
       </Grid>
     </Grid>
   );

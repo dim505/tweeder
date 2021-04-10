@@ -10,6 +10,7 @@ body {
 }
 
 .PostBody {
+  padding-top: 100px;
   width: 95%;
   margin: auto;
 }
@@ -17,7 +18,8 @@ body {
 /*SCROLL BAR CSS*/
 /* width */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 8px;
+  border-radius: 10px;
 }
 
 /* Track */
