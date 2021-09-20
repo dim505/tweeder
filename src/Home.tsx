@@ -20,7 +20,7 @@ import CommentIcon from "@material-ui/icons/Comment";
 import AutorenewIcon from "@material-ui/icons/Autorenew";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import InputBase from "@material-ui/core/InputBase";
-import Footer from "./footer.js";
+import Footer from "./footer";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";

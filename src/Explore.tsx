@@ -7,7 +7,7 @@ import InputBase from "@material-ui/core/InputBase";
 import Button from "@material-ui/core/Button";
 import React, { useEffect, useState, useContext } from "react";
 import Shared from "./Shared.module.scss";
-import Post from "./Post.js";
+import Post from "./Post";
 const Explore = () => {
   const [value, setValue] = useState(0);
 
